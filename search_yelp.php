@@ -143,54 +143,127 @@ function get_business($business_id) {
  */
 //function query_api($term, $location) { 
 function query_api($location, $category_filter, $radius_filter, $limit) {     
-    //$response = json_decode(search($term, $location));
+    
 	global $business1, $business2, $business3, $business4, $business5;
 	global $hospital1, $hospital2, $hospital3, $hospital4, $hospital5;
 	global $police1, $police2, $police3, $police4, $police5;
+	global $culoare1 = '#96C447', $culoare2 = '#96C447', $culoare3 = '#96C447', $culoare4 = '#96C447', $culoare5 = '#96C447'; 
+	global $fail1, $fail2, $fail3, $fail4, $fail5;
 	$response = json_decode(search($location, $category_filter, $radius_filter, $limit), true);
 	
 	$business1 = $response['businesses'][0];
-	$response_hospital1 = json_decode(search($business1['location']['postal_code'], 'hospitals', $radius_filter, 1), true);
+	$response_hospital1 = json_decode(search($business1['location']['postal_code'], 'hospitals', 8000, 1), true);
 	$hospital1 = $response_hospital1['businesses'][0];
-	$response_police1 = json_decode(search($business1['location']['postal_code'], 'policedepartments', $radius_filter, 1), true);
+	$response_police1 = json_decode(search($business1['location']['postal_code'], 'policedepartments', 8000, 1), true);
 	$police1 = $response_police1['businesses'][0];
-	//$response_pharmacy1 = json_decode(search($business1['location']['postal_code'], 'pharmacy', $radius_filter, 1), true);
-	//$pharmacy1 = $response_pharmacy1['businesses'][0];
+	if (($hospital1['name'] == "") && ($police1['name'] != ""))
+	{
+		$fail1 = 1;
+		$culoare1 = 'FF6600';
+	}
+	else if (($hospital1['name'] != "") && ($police1['name'] == ""))
+	{
+		$fail1 = 2;
+		$culoare1 = 'FF6600';
+	}
+	else if (($hospital1['name'] == "") && ($police1['name'] == ""))
+	{
+		$fail1 = 3;
+		$culoare1 = '#B33A3A';
+	}
+	
 	
 	$business2 = $response['businesses'][1];
-	$response_hospital2 = json_decode(search($business2['location']['postal_code'], 'hospitals', $radius_filter, 1), true);
+	$response_hospital2 = json_decode(search($business2['location']['postal_code'], 'hospitals', 8000, 1), true);
 	$hospital2 = $response_hospital2['businesses'][0];
-	$response_police2 = json_decode(search($business2['location']['postal_code'], 'policedepartments', $radius_filter, 1), true);
+	$response_police2 = json_decode(search($business2['location']['postal_code'], 'policedepartments', 8000, 1), true);
 	$police2 = $response_police2['businesses'][0];
-	//$response_pharmacy2 = json_decode(search($business2['location']['postal_code'], 'pharmacy', $radius_filter, 1), true);
-	//$pharmacy2 = $response_pharmacy2['businesses'][0];
+	if (($hospital1['name'] == "") && ($police1['name'] != ""))
+	{
+		$fail2 = 1;
+		$culoare2 = 'FF6600';
+	}
+	else if (($hospital2['name'] != "") && ($police2['name'] == ""))
+	{
+		$fail2 = 2;
+		$culoare2 = 'FF6600';
+	}
+	else if (($hospital2['name'] == "") && ($police2['name'] == ""))
+	{
+		$fail2 = 3;
+		$culoare2 = '#B33A3A';
+	}
+	
 	
 	$business3 = $response['businesses'][2];
-	$response_hospital3 = json_decode(search($business3['location']['postal_code'], 'hospitals', $radius_filter, 1), true);
+	$response_hospital3 = json_decode(search($business3['location']['postal_code'], 'hospitals', 8000, 1), true);
 	$hospital3 = $response_hospital3['businesses'][0];
-	$response_police3 = json_decode(search($business3['location']['postal_code'], 'policedepartments', $radius_filter, 1), true);
+	$response_police3 = json_decode(search($business3['location']['postal_code'], 'policedepartments', 8000, 1), true);
 	$police3 = $response_police3['businesses'][0];
-	//$response_pharmacy3 = json_decode(search($business3['location']['postal_code'], 'pharmacy', $radius_filter, 1), true);
-	//$pharmacy3 = $response_pharmacy3['businesses'][0];
+	if (($hospital3['name'] == "") && ($police3['name'] != ""))
+	{
+		$fail3 = 1;
+		$culoare3 = 'FF6600';
+	}
+	else if (($hospital3['name'] != "") && ($police3['name'] == ""))
+	{
+		$fail3 = 2;
+		$culoare3 = 'FF6600';
+	}
+	else if (($hospital3['name'] == "") && ($police3['name'] == ""))
+	{
+		$fail3 = 3;
+		$culoare3 = '#B33A3A';
+	}
+	
 	
 	$business4 = $response['businesses'][3];
-	$response_hospital4 = json_decode(search($business4['location']['postal_code'], 'hospitals', $radius_filter, 1), true);
+	$response_hospital4 = json_decode(search($business4['location']['postal_code'], 'hospitals', 8000, 1), true);
 	$hospital4 = $response_hospital4['businesses'][0];
-	$response_police4 = json_decode(search($business4['location']['postal_code'], 'policedepartments', $radius_filter, 1), true);
+	$response_police4 = json_decode(search($business4['location']['postal_code'], 'policedepartments', 8000, 1), true);
 	$police4 = $response_police4['businesses'][0];
-	//$response_pharmacy4 = json_decode(search($business4['location']['postal_code'], 'pharmacy', $radius_filter, 1), true);
-	//$pharmacy4 = $response_pharmacy4['businesses'][0];
+	if (($hospital4['name'] == "") && ($police4['name'] != ""))
+	{
+		$fail4 = 1;
+		$culoare4 = 'FF6600';
+	}
+	else if (($hospital4['name'] != "") && ($police4['name'] == ""))
+	{
+		$fail4 = 2;
+		$culoare4 = 'FF6600';
+	}
+	else if (($hospital4['name'] == "") && ($police4['name'] == ""))
+	{
+		$fail4 = 3;
+		$culoare4 = '#B33A3A';
+	}
+	
 	
 	$business5 = $response['businesses'][4];
-	$response_hospital5 = json_decode(search($business5['location']['postal_code'], 'hospitals', $radius_filter, 1), true);
+	$response_hospital5 = json_decode(search($business5['location']['postal_code'], 'hospitals', 8000, 1), true);
 	$hospital5 = $response_hospital5['businesses'][0];
-	$response_police5 = json_decode(search($business5['location']['postal_code'], 'policedepartments', $radius_filter, 1), true);
+	$response_police5 = json_decode(search($business5['location']['postal_code'], 'policedepartments', 8000, 1), true);
 	$police5 = $response_police5['businesses'][0];
-	//$response_pharmacy5 = json_decode(search($business5['location']['postal_code'], 'pharmacy', $radius_filter, 1), true);
-	//$pharmacy5 = $response_pharmacy5['businesses'][0];
+	if (($hospital5['name'] == "") && ($police5['name'] != ""))
+	{
+		$fail5 = 1;
+		$culoare5 = 'FF6600';
+	}
+	else if (($hospital5['name'] != "") && ($police5['name'] == ""))
+	{
+		$fail5 = 2;
+		$culoare5 = 'FF6600';
+	}
+	else if (($hospital5['name'] == "") && ($police5['name'] == ""))
+	{
+		$fail5 = 3;
+		$culoare5 = '#B33A3A';
+	}
+	
 }
 query_api($location, $category_filter, $radius_filter, $limit);
 
+$culoare = '#0F0';
 ?>
 <html lang="en">
 <head>
@@ -217,11 +290,11 @@ query_api($location, $category_filter, $radius_filter, $limit);
 ​
 <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
   <div class="panel panel-default">
-    <div class="panel-heading" role="tab" id="headingOne">
+    <div class="panel-heading" role="tab" id="headingOne"   style="background-color:<?php echo $culoare1?>">
       <h4 class="panel-title">
         <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
           <h2><?php echo $business1['name']; ?></h2>
-          <p>Address<?php echo $business1['location']['display_address']; ?></p>
+          <p><?php echo $business1['location']['display_address'][0]; echo "\n"; echo $business1['location']['display_address'][1]; ?></p>
           <p>You can call them at: <?php echo $business1['phone']; ?></p>
           <p>The rating is: <?php echo $business1['rating']; ?></p>
         </a>
@@ -229,16 +302,29 @@ query_api($location, $category_filter, $radius_filter, $limit);
     </div>
     <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
       <div class="panel-body">
-        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+      <div class="row">
+        <div class="col-md-6">
+        <h2><?php echo $hospital1['name']; ?></h2>
+          <p><?php echo $hospital1['location']['display_address'][0]; echo "\n"; echo $hospital1['location']['display_address'][1];?></p>
+          <p>You can call them at: <?php echo $hospital1['phone']; ?></p>
+          <p>The rating is: <?php echo $hospital1['rating']; ?></p>
+        </div>
+        <div class="col-md-6">
+        <h2><?php echo $police1['name']; ?></h2>
+          <p><?php echo $police1['location']['display_address'][0]; echo "\n"; echo $police1['location']['display_address'][1];?></p>
+          <p>You can call them at: <?php echo $police1['phone']; ?></p>
+          <p>The rating is: <?php echo $police1['rating']; ?></p>
+        </div>
+      </div>
       </div>
     </div>
   </div>
   <div class="panel panel-default">
-    <div class="panel-heading" role="tab" id="headingTwo">
+    <div class="panel-heading" role="tab" id="headingTwo" style="background-color:<?php echo $culoare2?>">
       <h4 class="panel-title">
         <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
           <h2><?php echo $business2['name']; ?></h2>
-          <p>Address<?php echo $business2['location']['display_address']; ?></p>
+          <p><?php echo $business2['location']['display_address'][0]; echo "\n"; echo $business2['location']['display_address'][1];?></p>
           <p>You can call them at: <?php echo $business2['phone']; ?></p>
           <p>The rating is: <?php echo $business2['rating']; ?></p>
         </a>
@@ -246,16 +332,29 @@ query_api($location, $category_filter, $radius_filter, $limit);
     </div>
     <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
       <div class="panel-body">
-        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+      <div class="row">
+        <div class="col-md-6">
+        <h2><?php echo $hospital2['name']; ?></h2>
+          <p><?php echo $hospital2['location']['display_address'][0]; echo "\n"; echo $hospital2['location']['display_address'][1];?></p>
+          <p>You can call them at: <?php echo $hospital2['phone']; ?></p>
+          <p>The rating is: <?php echo $hospital2['rating']; ?></p>
+        </div>
+        <div class="col-md-6">
+        <h2><?php echo $police2['name']; ?></h2>
+          <p><?php echo $police2['location']['display_address'][0]; echo "\n"; echo $police2['location']['display_address'][1];?></p>
+          <p>You can call them at: <?php echo $police2['phone']; ?></p>
+          <p>The rating is: <?php echo $police2['rating']; ?></p>
+        </div>
+      </div>
       </div>
     </div>
   </div>
   <div class="panel panel-default">
-    <div class="panel-heading" role="tab" id="headingThree">
+    <div class="panel-heading" role="tab" id="headingThree" style="background-color:<?php echo $culoare3?>" >
       <h4 class="panel-title">
         <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
           <h2><?php echo $business3['name']; ?></h2>
-          <p>Address<?php echo $business3['location']['display_address']; ?></p>
+          <p><?php echo $business3['location']['display_address'][0]; echo "\n"; echo $business3['location']['display_address'][1];?></p>
           <p>You can call them at: <?php echo $business3['phone']; ?></p>
           <p>The rating is: <?php echo $business3['rating']; ?></p>
         </a>
@@ -263,16 +362,29 @@ query_api($location, $category_filter, $radius_filter, $limit);
     </div>
     <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
       <div class="panel-body">
-        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+      <div class="row">
+        <div class="col-md-6">
+        <h2><?php echo $hospital3['name']; ?></h2>
+          <p><?php echo $hospital3['location']['display_address'][0]; echo "\n"; echo $hospital3['location']['display_address'][1];?></p>
+          <p>You can call them at: <?php echo $hospital5['phone']; ?></p>
+          <p>The rating is: <?php echo $hospital5['rating']; ?></p>
+        </div>
+        <div class="col-md-6">
+        <h2><?php echo $police3['name']; ?></h2>
+          <p><?php echo $police3['location']['display_address'][0]; echo "\n"; echo $police3['location']['display_address'][1];?></p>
+          <p>You can call them at: <?php echo $police3['phone']; ?></p>
+          <p>The rating is: <?php echo $police3['rating']; ?></p>
+        </div>
+      </div>
       </div>
     </div>
   </div>
   <div class="panel panel-default">
-    <div class="panel-heading" role="tab" id="headingFour">
+    <div class="panel-heading" role="tab" id="headingFour" style="background-color:<?php echo $culoare4?>">
       <h4 class="panel-title">
         <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
           <h2><?php echo $business4['name']; ?></h2>
-          <p>Address<?php echo $business4['location']['display_address']; ?></p>
+          <p><?php echo $business4['location']['display_address'][0]; echo "\n"; echo $business4['location']['display_address'][1];?></p>
           <p>You can call them at: <?php echo $business4['phone']; ?></p>
           <p>The rating is: <?php echo $business4['rating']; ?></p>
         </a>
@@ -280,16 +392,29 @@ query_api($location, $category_filter, $radius_filter, $limit);
     </div>
     <div id="collapseFour" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingFour">
       <div class="panel-body">
-        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+      <div class="row">
+        <div class="col-md-6">
+        <h2><?php echo $hospital4['name']; ?></h2>
+          <p><?php echo $hospital4['location']['display_address'][0]; echo "\n"; echo $hospital4['location']['display_address'][1];?></p>
+          <p>You can call them at: <?php echo $hospital4['phone']; ?></p>
+          <p>The rating is: <?php echo $hospital5['rating']; ?></p>
+        </div>
+        <div class="col-md-6">
+        <h2><?php echo $police4['name']; ?></h2>
+          <p><?php echo $police4['location']['display_address'][0]; echo "\n"; echo $police4['location']['display_address'][1];?></p>
+          <p>You can call them at: <?php echo $police4['phone']; ?></p>
+          <p>The rating is: <?php echo $police4['rating']; ?></p>
+        </div>
+      </div>
       </div>
     </div>
   </div>
   <div class="panel panel-default">
-    <div class="panel-heading" role="tab" id="headingFive">
+    <div class="panel-heading" role="tab" id="headingFive" style="background-color:<?php echo $culoare5?>">
       <h4 class="panel-title">
         <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
           <h2><?php echo $business5['name']; ?></h2>
-          <p>Address<?php echo $business5['location']['display_address']; ?></p>
+          <p><?php echo $business5['location']['display_address'][0]; echo "\n"; echo $business5['location']['display_address'][1];?></p>
           <p>You can call them at: <?php echo $business5['phone']; ?></p>
           <p>The rating is: <?php echo $business5['rating']; ?></p>
         </a>
@@ -297,7 +422,20 @@ query_api($location, $category_filter, $radius_filter, $limit);
     </div>
     <div id="collapseFive" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingFive">
       <div class="panel-body">
-        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+      <div class="row">
+        <div class="col-md-6">
+        <h2><?php echo $hospital5['name']; ?></h2>
+          <p><?php echo $hospital5['location']['display_address'][0]; echo "\n"; echo $hospital5['location']['display_address'][1];?></p>
+          <p>You can call them at: <?php echo $hospital5['phone']; ?></p>
+          <p>The rating is: <?php echo $hospital5['rating']; ?></p>
+        </div>
+        <div class="col-md-6">
+        <h2><?php echo $police5['name']; ?></h2>
+          <p><?php echo $police5['location']['display_address'][0]; echo "\n"; echo $police5['location']['display_address'][1];?></p>
+          <p>You can call them at: <?php echo $police5['phone']; ?></p>
+          <p>The rating is: <?php echo $police5['rating']; ?></p>
+        </div>
+      </div>
       </div>
     </div>
   </div>
