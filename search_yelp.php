@@ -147,7 +147,7 @@ function query_api($location, $category_filter, $radius_filter, $limit) {
 	global $business1, $business2, $business3, $business4, $business5;
 	global $hospital1, $hospital2, $hospital3, $hospital4, $hospital5;
 	global $police1, $police2, $police3, $police4, $police5;
-	global $culoare1 = '#96C447', $culoare2 = '#96C447', $culoare3 = '#96C447', $culoare4 = '#96C447', $culoare5 = '#96C447'; 
+	global $culoare1, $culoare2, $culoare3, $culoare4, $culoare5; 
 	global $fail1, $fail2, $fail3, $fail4, $fail5;
 	$response = json_decode(search($location, $category_filter, $radius_filter, $limit), true);
 	
@@ -171,6 +171,8 @@ function query_api($location, $category_filter, $radius_filter, $limit) {
 		$fail1 = 3;
 		$culoare1 = '#B33A3A';
 	}
+	else
+	 	$culoare1 = '#96C447';
 	
 	
 	$business2 = $response['businesses'][1];
@@ -193,6 +195,8 @@ function query_api($location, $category_filter, $radius_filter, $limit) {
 		$fail2 = 3;
 		$culoare2 = '#B33A3A';
 	}
+	else
+	 	$culoare2 = '#96C447';
 	
 	
 	$business3 = $response['businesses'][2];
@@ -215,7 +219,8 @@ function query_api($location, $category_filter, $radius_filter, $limit) {
 		$fail3 = 3;
 		$culoare3 = '#B33A3A';
 	}
-	
+	else
+	 	$culoare3 = '#96C447';
 	
 	$business4 = $response['businesses'][3];
 	$response_hospital4 = json_decode(search($business4['location']['postal_code'], 'hospitals', 8000, 1), true);
@@ -237,12 +242,13 @@ function query_api($location, $category_filter, $radius_filter, $limit) {
 		$fail4 = 3;
 		$culoare4 = '#B33A3A';
 	}
-	
+	else
+	 	$culoare4 = '#96C447';
 	
 	$business5 = $response['businesses'][4];
-	$response_hospital5 = json_decode(search($business5['location']['postal_code'], 'hospitals', 8000, 1), true);
+	$response_hospital5 = json_decode(search($business5['location']['postal_code'], 'hospitals', 1000, 1), true);
 	$hospital5 = $response_hospital5['businesses'][0];
-	$response_police5 = json_decode(search($business5['location']['postal_code'], 'policedepartments', 8000, 1), true);
+	$response_police5 = json_decode(search($business5['location']['postal_code'], 'policedepartments', 1000, 1), true);
 	$police5 = $response_police5['businesses'][0];
 	if (($hospital5['name'] == "") && ($police5['name'] != ""))
 	{
@@ -259,7 +265,8 @@ function query_api($location, $category_filter, $radius_filter, $limit) {
 		$fail5 = 3;
 		$culoare5 = '#B33A3A';
 	}
-	
+	else
+	 	$culoare5 = '#96C447';
 }
 query_api($location, $category_filter, $radius_filter, $limit);
 
@@ -306,14 +313,36 @@ $culoare = '#0F0';
         <div class="col-md-6">
         <h2><?php echo $hospital1['name']; ?></h2>
           <p><?php echo $hospital1['location']['display_address'][0]; echo "\n"; echo $hospital1['location']['display_address'][1];?></p>
-          <p>You can call them at: <?php echo $hospital1['phone']; ?></p>
-          <p>The rating is: <?php echo $hospital1['rating']; ?></p>
+          <p>
+		  <?php 
+		  if (($fail1 == 1) || ($fail1 == 3))
+		  {
+		  	echo "<img src=exclamare.png>";
+		  }
+		  else 
+		  {
+			  echo "You can call them at: ".$hospital1['phone']."\n"; 
+			  echo 'The rating is: '.$hospital1['rating']; ?>
+          }
+		  ?>
+          </p>
         </div>
         <div class="col-md-6">
         <h2><?php echo $police1['name']; ?></h2>
           <p><?php echo $police1['location']['display_address'][0]; echo "\n"; echo $police1['location']['display_address'][1];?></p>
-          <p>You can call them at: <?php echo $police1['phone']; ?></p>
-          <p>The rating is: <?php echo $police1['rating']; ?></p>
+          <p>
+		  <?php 
+		  if (($fail1 == 2) || ($fail1 == 3))
+		  {
+		  	echo "<img src=exclamare.png>";
+		  }
+		  else 
+		  {
+			  echo "You can call them at: ".$police1['phone']."\n"; 
+			  echo 'The rating is: '.$police1['rating']; ?>
+          }
+		  ?>
+          </p>
         </div>
       </div>
       </div>
@@ -336,14 +365,36 @@ $culoare = '#0F0';
         <div class="col-md-6">
         <h2><?php echo $hospital2['name']; ?></h2>
           <p><?php echo $hospital2['location']['display_address'][0]; echo "\n"; echo $hospital2['location']['display_address'][1];?></p>
-          <p>You can call them at: <?php echo $hospital2['phone']; ?></p>
-          <p>The rating is: <?php echo $hospital2['rating']; ?></p>
+          <p>
+		  <?php 
+		  if (($fail2 == 1) || ($fail2 == 3))
+		  {
+		  	echo "<img src=exclamare.png>";
+		  }
+		  else 
+		  {
+			  echo "You can call them at: ".$hospital2['phone']."\n"; 
+			  echo 'The rating is: '.$hospital2['rating']; ?>
+          }
+		  ?>
+          </p>
         </div>
         <div class="col-md-6">
         <h2><?php echo $police2['name']; ?></h2>
           <p><?php echo $police2['location']['display_address'][0]; echo "\n"; echo $police2['location']['display_address'][1];?></p>
-          <p>You can call them at: <?php echo $police2['phone']; ?></p>
-          <p>The rating is: <?php echo $police2['rating']; ?></p>
+          <p>
+		  <?php 
+		  if (($fail2 == 2) || ($fail2 == 3))
+		  {
+		  	echo "<img src=exclamare.png>";
+		  }
+		  else 
+		  {
+			  echo "You can call them at: ".$police2['phone']."\n"; 
+			  echo 'The rating is: '.$police2['rating']; ?>
+          }
+		  ?>
+          </p>
         </div>
       </div>
       </div>
@@ -366,14 +417,36 @@ $culoare = '#0F0';
         <div class="col-md-6">
         <h2><?php echo $hospital3['name']; ?></h2>
           <p><?php echo $hospital3['location']['display_address'][0]; echo "\n"; echo $hospital3['location']['display_address'][1];?></p>
-          <p>You can call them at: <?php echo $hospital5['phone']; ?></p>
-          <p>The rating is: <?php echo $hospital5['rating']; ?></p>
+          <p>
+		  <?php 
+		  if (($fail3 == 1) || ($fail3 == 3))
+		  {
+		  	echo "<img src=exclamare.png>";
+		  }
+		  else 
+		  {
+			  echo "You can call them at: ".$hospital3['phone']."\n"; 
+			  echo 'The rating is: '.$hospital3['rating']; ?>
+          }
+		  ?>
+          </p>
         </div>
         <div class="col-md-6">
         <h2><?php echo $police3['name']; ?></h2>
           <p><?php echo $police3['location']['display_address'][0]; echo "\n"; echo $police3['location']['display_address'][1];?></p>
-          <p>You can call them at: <?php echo $police3['phone']; ?></p>
-          <p>The rating is: <?php echo $police3['rating']; ?></p>
+          <p>
+		  <?php 
+		  if (($fail3 == 2) || ($fail3 == 3))
+		  {
+		  	echo "<img src=exclamare.png>";
+		  }
+		  else 
+		  {
+			  echo "You can call them at: ".$police3['phone']."\n"; 
+			  echo 'The rating is: '.$police3['rating']; ?>
+          }
+		  ?>
+          </p>
         </div>
       </div>
       </div>
@@ -396,14 +469,36 @@ $culoare = '#0F0';
         <div class="col-md-6">
         <h2><?php echo $hospital4['name']; ?></h2>
           <p><?php echo $hospital4['location']['display_address'][0]; echo "\n"; echo $hospital4['location']['display_address'][1];?></p>
-          <p>You can call them at: <?php echo $hospital4['phone']; ?></p>
-          <p>The rating is: <?php echo $hospital5['rating']; ?></p>
+          <p>
+		  <?php 
+		  if (($fail4 == 1) || ($fail4 == 3))
+		  {
+		  	echo "<img src=exclamare.png>";
+		  }
+		  else 
+		  {
+			  echo "You can call them at: ".$hospital4['phone']."\n"; 
+			  echo 'The rating is: '.$hospital4['rating']; ?>
+          }
+		  ?>
+          </p>
         </div>
         <div class="col-md-6">
         <h2><?php echo $police4['name']; ?></h2>
           <p><?php echo $police4['location']['display_address'][0]; echo "\n"; echo $police4['location']['display_address'][1];?></p>
-          <p>You can call them at: <?php echo $police4['phone']; ?></p>
-          <p>The rating is: <?php echo $police4['rating']; ?></p>
+          <p>
+		  <?php 
+		  if (($fail4 == 2) || ($fail4 == 3))
+		  {
+		  	echo "<img src=exclamare.png>";
+		  }
+		  else 
+		  {
+			  echo "You can call them at: ".$police4['phone']."\n"; 
+			  echo 'The rating is: '.$police4['rating']; ?>
+          }
+		  ?>
+          </p>
         </div>
       </div>
       </div>
@@ -426,14 +521,36 @@ $culoare = '#0F0';
         <div class="col-md-6">
         <h2><?php echo $hospital5['name']; ?></h2>
           <p><?php echo $hospital5['location']['display_address'][0]; echo "\n"; echo $hospital5['location']['display_address'][1];?></p>
-          <p>You can call them at: <?php echo $hospital5['phone']; ?></p>
-          <p>The rating is: <?php echo $hospital5['rating']; ?></p>
+          <p>
+		  <?php 
+		  if (($fail5 == 1) || ($fail5 == 3))
+		  {
+		  	echo "<img src=exclamare.png>";
+		  }
+		  else 
+		  {
+			  echo "You can call them at: ".$hospital5['phone']."\n"; 
+			  echo 'The rating is: '.$hospital5['rating']; ?>
+          }
+		  ?>
+          </p>
         </div>
         <div class="col-md-6">
         <h2><?php echo $police5['name']; ?></h2>
           <p><?php echo $police5['location']['display_address'][0]; echo "\n"; echo $police5['location']['display_address'][1];?></p>
-          <p>You can call them at: <?php echo $police5['phone']; ?></p>
-          <p>The rating is: <?php echo $police5['rating']; ?></p>
+          <p>
+		  <?php 
+		  if (($fail5 == 2) || ($fail5 == 3))
+		  {
+		  	echo "<img src=exclamare.png>";
+		  }
+		  else 
+		  {
+			  echo "You can call them at: ".$police5['phone']."\n"; 
+			  echo 'The rating is: '.$police5['rating']; ?>
+          }
+		  ?>
+          </p>
         </div>
       </div>
       </div>
