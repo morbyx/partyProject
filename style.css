@@ -1,0 +1,12 @@
+body {
+    background-image: url("party-in-barcelona.jpg");
+    padding-top: 200px;
+}
+div.panel {
+	padding: 40px 30px 10px 35px;
+	background-color: #eeeeee;
+	min-width: 350px;
+}
+#submitButton {
+	padding-top: 15px;
+}
