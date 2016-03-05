@@ -159,11 +159,16 @@ function query_api($term, $location) {
         $business_id
     );
     $response = get_business($business_id);
+	$response1 = get_business($business_id1);
+	$response2 = get_business($business_id2);
     
     print sprintf("Result for business \"%s\" found:\n", $business_id);
 	print sprintf("Result for business \"%s\" found:\n", $business_id1);
 	print sprintf("Result for business \"%s\" found:\n", $business_id2);
-    //print "$response\n";
+    print "$response\n";
+	print "$response1\n";
+	print "$response2\n";
+	
 }
 
 /**
