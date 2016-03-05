@@ -1,0 +1,26 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>PArty Location Finder</title>
+</head>
+
+<body>
+<div>
+<form action="search_yelp.php" method="post">
+    	<p>Select the type of location
+		<select name="type_of_location" size="1">
+ 		<option>Choose...</option>
+  		<option value="pubs">Pub</option>
+  		<option value="danceclubs">Clubs</option>
+  		<option value="karaoke">Karaoke</option>
+		</select>
+        </p>
+        <p>Fill in your postal code
+        <input name="location_input" type="text" maxlength="7" />
+        </p>
+        <input type="submit" value="Submit">
+</form>
+</div>
+</body>
+</html>
