@@ -19,7 +19,33 @@
     <![endif]-->
   </head>
   <body>
-    <h1>Hello, world!</h1>
+
+
+
+    <div align="center">
+     <div class="panel panel-primary" style="max-width: 400px; ">
+       <div class="panel-heading" align="left">Select your location</div>
+       <div class="panel-body" align="left">
+          <form action="search_yelp.php" method="post" form class="form-horizontal" role="form">
+            <div  class="form-group">
+                <p>Select the type of location
+              <select name="type_of_location" size="1">
+                <option>Choose...</option>
+                <option value="pubs">Pub</option>
+                <option value="danceclubs">Clubs</option>
+                <option value="karaoke">Karaoke</option>
+              </select>
+                </p>
+                <p>Fill in your postal code
+                <input name="location_input" type="text" maxlength="7" />
+                </p>
+                <div align="center" id="submitButton"><input type="submit" value="Submit" class="btn btn-primary btn-lg" role="button"></div>
+              </div>
+          </form>
+       </div>
+     </div>
+   </div>
+
 
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
