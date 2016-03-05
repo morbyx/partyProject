@@ -146,6 +146,14 @@ function query_api($term, $location) {
     $business_id = $response->businesses[0]->id;
 	$business_id1 = $response->businesses[1]->id;
 	$business_id2 = $response->businesses[2]->id;
+	$business_id3 = $response->businesses[3]->id;
+	$business_id4 = $response->businesses[4]->id;
+	$business_id5 = $response->businesses[5]->id;
+	$business_id6 = $response->businesses[6]->id;
+	$business_id7 = $response->businesses[7]->id;
+	$business_id8 = $response->businesses[8]->id;
+	$business_id9 = $response->businesses[9]->id;
+	
     
     print sprintf(
         "%d businesses found, querying business info for the top result \"%s\"\n\n",         
@@ -161,14 +169,45 @@ function query_api($term, $location) {
     $response = get_business($business_id);
 	$response1 = get_business($business_id1);
 	$response2 = get_business($business_id2);
-    
+    $response3 = get_business($business_id3);
+	$response4 = get_business($business_id4);
+	$response5 = get_business($business_id5);
+	$response6 = get_business($business_id6);
+	$response7 = get_business($business_id7);
+	$response8 = get_business($business_id8);
+	$response9 = get_business($business_id9);
+	
     print sprintf("Result for business \"%s\" found:\n", $business_id);
+    echo $response->display_address;
+	echo $response->postal_code;
+	/**
 	print sprintf("Result for business \"%s\" found:\n", $business_id1);
-	print sprintf("Result for business \"%s\" found:\n", $business_id2);
-    print "$response\n";
 	print "$response1\n";
+	
+	print sprintf("Result for business \"%s\" found:\n", $business_id2);
 	print "$response2\n";
 	
+	print sprintf("Result for business \"%s\" found:\n", $business_id3);
+	print "$response3\n";
+	
+	print sprintf("Result for business \"%s\" found:\n", $business_id4);
+	print "$response4\n";
+	
+	print sprintf("Result for business \"%s\" found:\n", $business_id5);
+	print "$response5\n";
+	
+	print sprintf("Result for business \"%s\" found:\n", $business_id6);
+	print "$response6\n";
+	
+	print sprintf("Result for business \"%s\" found:\n", $business_id7);
+	print "$response7\n";
+	
+	print sprintf("Result for business \"%s\" found:\n", $business_id8);
+	print "$response8\n";
+	
+	print sprintf("Result for business \"%s\" found:\n", $business_id9);
+	print "$response9\n";
+	**/
 }
 
 /**
