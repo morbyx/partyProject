@@ -110,7 +110,8 @@ function request($host, $path) {
  * @param    $location    The search location passed to the API 
  * @return   The JSON response from the request 
  */
-function search($term, $location) {
+//function search($term, $location) {
+function search() {
     $url_params = array();
     
     //$url_params['term'] = $term ?: $GLOBALS['DEFAULT_TERM'];
@@ -141,8 +142,12 @@ function get_business($business_id) {
  * @param    $term        The search term to query
  * @param    $location    The location of the business to query
  */
-function query_api($term, $location) {     
-    $response = json_decode(search($term, $location));
+//function query_api($term, $location) { 
+function query_api() {     
+    //$response = json_decode(search($term, $location));
+	$response = json_decode(search());
+	foreach($response as $cr)
+		print $cr['total'];
     $business_id = $response->businesses[0]->id;
 	$business_id1 = $response->businesses[1]->id;
 	$business_id2 = $response->businesses[2]->id;
@@ -178,8 +183,9 @@ function query_api($term, $location) {
 	$response9 = get_business($business_id9);
 	
     print sprintf("Result for business \"%s\" found:\n", $business_id);
-    echo $response->display_address;
-	echo $response->postal_code;
+	//print "$response\n";
+    //echo $response["display_address"];
+	//print $response["businesses"]["location"]["postal_code"];
 	/**
 	print sprintf("Result for business \"%s\" found:\n", $business_id1);
 	print "$response1\n";
@@ -213,19 +219,20 @@ function query_api($term, $location) {
 /**
  * User input is handled here 
  */
-$longopts  = array(
-    "term::",
-    "location::",
+//$longopts  = array(
+    //"term::",
+   // "location::",
 	//"category_filter::",
 	//"radius_filter::",
 	//"limit::",
-);
+//);
     
-$options = getopt("", $longopts);
+//$options = getopt("", $longopts);
 
-$term = $options['term'] ?: '';
-$location = $options['location'] ?: '';
+//$term = $options['term'] ?: '';
+//$location = $options['location'] ?: '';
 
-query_api($term, $location);
+//query_api($term, $location);
+query_api();
 
 ?>
