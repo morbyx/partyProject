@@ -1,4 +1,3 @@
-#!/usr/bin/php
 <?php
 
 /**
@@ -40,11 +39,13 @@ $BUSINESS_PATH = '/v2/business/';
 
 //Actual search values
 //$TERM = $_POST['term_input'];
-$LOCATION = $_POST['location_input'];
+$LOCATION_DEFAULT = $_POST['location_input'];
 $location = $_POST['location_input'];
 $CATEGORY = $_POST['type_of_location'];
-$category_filter['type_of_location'];
+$category_filter = $_POST['type_of_location'];
 $DEFAULT_RADIUS_FILTER = 8000;
+$radius_filter = 8000;
+$limit = 5;
 
 
 /** 
@@ -115,7 +116,7 @@ function request($host, $path) {
 //function search($term, $location) {
 function search($location, $category_filter, $radius_filter, $limit) {
     $url_params = array();
-    $url_params['location'] = $location?: $GLOBALS['LOCATION'];
+    $url_params['location'] = $location?: $GLOBALS['LOCATION_DEFAULT'];
 	$url_params['category_filter'] = $category_filter?: $GLOBALS['CATEGORY'];
 	$url_params['radius_filter'] = $radius_filter?: $GLOBALS['DEFAULT_RADIUS_FILTER'];
     $url_params['limit'] = $limit?: $GLOBALS['SEARCH_LIMIT'];
@@ -143,7 +144,7 @@ function get_business($business_id) {
  * @param    $location    The location of the business to query
  */
 //function query_api($term, $location) { 
-function query_api() {     
+function query_api($location, $category_filter, $radius_filter, $limit) {     
     //$response = json_decode(search($term, $location));
 	$response = json_decode(search($location, $category_filter, $radius_filter, $limit), true);
 	
@@ -152,59 +153,68 @@ function query_api() {
 	$hospital1 = $response_hospital1['businesses'][0];
 	$response_police1 = json_decode(search($business1['location']['postal_code'], 'policedepartments', $radius_filter, 1), true);
 	$police1 = $response_police1['businesses'][0];
-	$response_pharmacy1 = json_decode(search($business1['location']['postal_code'], 'pharmacy', $radius_filter, 1), true);
-	$pharmacy1 = $response_pharmacy1['businesses'][0];
+	//$response_pharmacy1 = json_decode(search($business1['location']['postal_code'], 'pharmacy', $radius_filter, 1), true);
+	//$pharmacy1 = $response_pharmacy1['businesses'][0];
 	
 	$business2 = $response['businesses'][1];
 	$response_hospital2 = json_decode(search($business2['location']['postal_code'], 'hospitals', $radius_filter, 1), true);
 	$hospital2 = $response_hospital2['businesses'][0];
 	$response_police2 = json_decode(search($business2['location']['postal_code'], 'policedepartments', $radius_filter, 1), true);
 	$police2 = $response_police2['businesses'][0];
-	$response_pharmacy2 = json_decode(search($business2['location']['postal_code'], 'pharmacy', $radius_filter, 1), true);
-	$pharmacy2 = $response_pharmacy2['businesses'][0];
+	//$response_pharmacy2 = json_decode(search($business2['location']['postal_code'], 'pharmacy', $radius_filter, 1), true);
+	//$pharmacy2 = $response_pharmacy2['businesses'][0];
 	
 	$business3 = $response['businesses'][2];
 	$response_hospital3 = json_decode(search($business3['location']['postal_code'], 'hospitals', $radius_filter, 1), true);
 	$hospital3 = $response_hospital3['businesses'][0];
 	$response_police3 = json_decode(search($business3['location']['postal_code'], 'policedepartments', $radius_filter, 1), true);
 	$police3 = $response_police3['businesses'][0];
-	$response_pharmacy3 = json_decode(search($business3['location']['postal_code'], 'pharmacy', $radius_filter, 1), true);
-	$pharmacy3 = $response_pharmacy3['businesses'][0];
+	//$response_pharmacy3 = json_decode(search($business3['location']['postal_code'], 'pharmacy', $radius_filter, 1), true);
+	//$pharmacy3 = $response_pharmacy3['businesses'][0];
 	
 	$business4 = $response['businesses'][3];
 	$response_hospital4 = json_decode(search($business4['location']['postal_code'], 'hospitals', $radius_filter, 1), true);
 	$hospital4 = $response_hospital4['businesses'][0];
 	$response_police4 = json_decode(search($business4['location']['postal_code'], 'policedepartments', $radius_filter, 1), true);
 	$police4 = $response_police4['businesses'][0];
-	$response_pharmacy4 = json_decode(search($business4['location']['postal_code'], 'pharmacy', $radius_filter, 1), true);
-	$pharmacy4 = $response_pharmacy4['businesses'][0];
+	//$response_pharmacy4 = json_decode(search($business4['location']['postal_code'], 'pharmacy', $radius_filter, 1), true);
+	//$pharmacy4 = $response_pharmacy4['businesses'][0];
 	
 	$business5 = $response['businesses'][4];
 	$response_hospital5 = json_decode(search($business5['location']['postal_code'], 'hospitals', $radius_filter, 1), true);
 	$hospital5 = $response_hospital5['businesses'][0];
 	$response_police5 = json_decode(search($business5['location']['postal_code'], 'policedepartments', $radius_filter, 1), true);
 	$police5 = $response_police5['businesses'][0];
-	$response_pharmacy5 = json_decode(search($business5['location']['postal_code'], 'pharmacy', $radius_filter, 1), true);
-	$pharmacy5 = $response_pharmacy5['businesses'][0];
+	//$response_pharmacy5 = json_decode(search($business5['location']['postal_code'], 'pharmacy', $radius_filter, 1), true);
+	//$pharmacy5 = $response_pharmacy5['businesses'][0];
 }
-
-/**
- * User input is handled here 
- */
-//$longopts  = array(
-    //"term::",
-   // "location::",
-	//"category_filter::",
-	//"radius_filter::",
-	//"limit::",
-//);
-    
-//$options = getopt("", $longopts);
-
-//$term = $options['term'] ?: '';
-//$location = $options['location'] ?: '';
-
-//query_api($term, $location);
 query_api($location, $category_filter, $radius_filter, $limit);
 
 ?>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+  <title>Bootstrap 101 Template</title>
+  <!-- Bootstrap -->
+  <link href="css/bootstrap.min.css" rel="stylesheet">
+  <link href="style.css" rel="stylesheet">
+  <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+  <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<div>
+<p>First rating is: <?php print $police5['rating']; ?></p>
+</div>
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+<script src="js/bootstrap.min.js"></script>
+</body>
+</html>
