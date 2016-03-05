@@ -34,7 +34,7 @@ $TOKEN_SECRET = 'Mxz7KKRPAGOCmVzYJdMUXHQRu8s';
 $API_HOST = 'api.yelp.com';
 $DEFAULT_TERM = 'dinner';
 $DEFAULT_LOCATION = 'San Francisco, CA';
-$SEARCH_LIMIT = 10;
+$SEARCH_LIMIT = 5;
 $SEARCH_PATH = '/v2/search/';
 $BUSINESS_PATH = '/v2/business/';
 
@@ -145,7 +145,15 @@ function get_business($business_id) {
 //function query_api($term, $location) { 
 function query_api() {     
     //$response = json_decode(search($term, $location));
-	$response = json_decode(search());
+	$response = json_decode(search(), true);
+	$business1 = $response['businesses'][0];
+	$business2 = $response['businesses'][1];
+	$business3 = $response['businesses'][2];
+	$business4 = $response['businesses'][3];
+	$business5 = $response['businesses'][4];
+	
+	
+	/**
 	foreach($response as $cr)
 		print $cr['total'];
     $business_id = $response->businesses[0]->id;
