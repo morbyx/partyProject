@@ -41,7 +41,9 @@ $BUSINESS_PATH = '/v2/business/';
 //Actual search values
 //$TERM = $_POST['term_input'];
 $LOCATION = $_POST['location_input'];
+$location = $_POST['location_input'];
 $CATEGORY = $_POST['type_of_location'];
+$category_filter['type_of_location'];
 $DEFAULT_RADIUS_FILTER = 8000;
 
 
@@ -111,14 +113,12 @@ function request($host, $path) {
  * @return   The JSON response from the request 
  */
 //function search($term, $location) {
-function search() {
+function search($location, $category_filter, $radius_filter, $limit) {
     $url_params = array();
-    
-    //$url_params['term'] = $term ?: $GLOBALS['DEFAULT_TERM'];
     $url_params['location'] = $location?: $GLOBALS['LOCATION'];
-	$url_params['category_filter'] = $GLOBALS['CATEGORY'];
-	$url_params['radius_filter'] = $GLOBALS['DEFAULT_RADIUS_FILTER'];
-    $url_params['limit'] = $GLOBALS['SEARCH_LIMIT'];
+	$url_params['category_filter'] = $category_filter?: $GLOBALS['CATEGORY'];
+	$url_params['radius_filter'] = $radius_filter?: $GLOBALS['DEFAULT_RADIUS_FILTER'];
+    $url_params['limit'] = $limit?: $GLOBALS['SEARCH_LIMIT'];
     $search_path = $GLOBALS['SEARCH_PATH'] . "?" . http_build_query($url_params);
     
     return request($GLOBALS['API_HOST'], $search_path);
@@ -145,83 +145,47 @@ function get_business($business_id) {
 //function query_api($term, $location) { 
 function query_api() {     
     //$response = json_decode(search($term, $location));
-	$response = json_decode(search(), true);
+	$response = json_decode(search($location, $category_filter, $radius_filter, $limit), true);
+	
 	$business1 = $response['businesses'][0];
+	$response_hospital1 = json_decode(search($business1['location']['postal_code'], 'hospitals', $radius_filter, 1), true);
+	$hospital1 = $response_hospital1['businesses'][0];
+	$response_police1 = json_decode(search($business1['location']['postal_code'], 'policedepartments', $radius_filter, 1), true);
+	$police1 = $response_police1['businesses'][0];
+	$response_pharmacy1 = json_decode(search($business1['location']['postal_code'], 'pharmacy', $radius_filter, 1), true);
+	$pharmacy1 = $response_pharmacy1['businesses'][0];
+	
 	$business2 = $response['businesses'][1];
+	$response_hospital2 = json_decode(search($business2['location']['postal_code'], 'hospitals', $radius_filter, 1), true);
+	$hospital2 = $response_hospital2['businesses'][0];
+	$response_police2 = json_decode(search($business2['location']['postal_code'], 'policedepartments', $radius_filter, 1), true);
+	$police2 = $response_police2['businesses'][0];
+	$response_pharmacy2 = json_decode(search($business2['location']['postal_code'], 'pharmacy', $radius_filter, 1), true);
+	$pharmacy2 = $response_pharmacy2['businesses'][0];
+	
 	$business3 = $response['businesses'][2];
+	$response_hospital3 = json_decode(search($business3['location']['postal_code'], 'hospitals', $radius_filter, 1), true);
+	$hospital3 = $response_hospital3['businesses'][0];
+	$response_police3 = json_decode(search($business3['location']['postal_code'], 'policedepartments', $radius_filter, 1), true);
+	$police3 = $response_police3['businesses'][0];
+	$response_pharmacy3 = json_decode(search($business3['location']['postal_code'], 'pharmacy', $radius_filter, 1), true);
+	$pharmacy3 = $response_pharmacy3['businesses'][0];
+	
 	$business4 = $response['businesses'][3];
+	$response_hospital4 = json_decode(search($business4['location']['postal_code'], 'hospitals', $radius_filter, 1), true);
+	$hospital4 = $response_hospital4['businesses'][0];
+	$response_police4 = json_decode(search($business4['location']['postal_code'], 'policedepartments', $radius_filter, 1), true);
+	$police4 = $response_police4['businesses'][0];
+	$response_pharmacy4 = json_decode(search($business4['location']['postal_code'], 'pharmacy', $radius_filter, 1), true);
+	$pharmacy4 = $response_pharmacy4['businesses'][0];
+	
 	$business5 = $response['businesses'][4];
-	
-	
-	/**
-	foreach($response as $cr)
-		print $cr['total'];
-    $business_id = $response->businesses[0]->id;
-	$business_id1 = $response->businesses[1]->id;
-	$business_id2 = $response->businesses[2]->id;
-	$business_id3 = $response->businesses[3]->id;
-	$business_id4 = $response->businesses[4]->id;
-	$business_id5 = $response->businesses[5]->id;
-	$business_id6 = $response->businesses[6]->id;
-	$business_id7 = $response->businesses[7]->id;
-	$business_id8 = $response->businesses[8]->id;
-	$business_id9 = $response->businesses[9]->id;
-	
-    
-    print sprintf(
-        "%d businesses found, querying business info for the top result \"%s\"\n\n",         
-        count($response->businesses),
-        $business_id
-    );
-    
-	print sprintf(
-        "%d businesses found, querying business info for the top result \"%s\"\n\n",         
-        count($response->businesses),
-        $business_id
-    );
-    $response = get_business($business_id);
-	$response1 = get_business($business_id1);
-	$response2 = get_business($business_id2);
-    $response3 = get_business($business_id3);
-	$response4 = get_business($business_id4);
-	$response5 = get_business($business_id5);
-	$response6 = get_business($business_id6);
-	$response7 = get_business($business_id7);
-	$response8 = get_business($business_id8);
-	$response9 = get_business($business_id9);
-	
-    print sprintf("Result for business \"%s\" found:\n", $business_id);
-	//print "$response\n";
-    //echo $response["display_address"];
-	//print $response["businesses"]["location"]["postal_code"];
-	/**
-	print sprintf("Result for business \"%s\" found:\n", $business_id1);
-	print "$response1\n";
-	
-	print sprintf("Result for business \"%s\" found:\n", $business_id2);
-	print "$response2\n";
-	
-	print sprintf("Result for business \"%s\" found:\n", $business_id3);
-	print "$response3\n";
-	
-	print sprintf("Result for business \"%s\" found:\n", $business_id4);
-	print "$response4\n";
-	
-	print sprintf("Result for business \"%s\" found:\n", $business_id5);
-	print "$response5\n";
-	
-	print sprintf("Result for business \"%s\" found:\n", $business_id6);
-	print "$response6\n";
-	
-	print sprintf("Result for business \"%s\" found:\n", $business_id7);
-	print "$response7\n";
-	
-	print sprintf("Result for business \"%s\" found:\n", $business_id8);
-	print "$response8\n";
-	
-	print sprintf("Result for business \"%s\" found:\n", $business_id9);
-	print "$response9\n";
-	**/
+	$response_hospital5 = json_decode(search($business5['location']['postal_code'], 'hospitals', $radius_filter, 1), true);
+	$hospital5 = $response_hospital5['businesses'][0];
+	$response_police5 = json_decode(search($business5['location']['postal_code'], 'policedepartments', $radius_filter, 1), true);
+	$police5 = $response_police5['businesses'][0];
+	$response_pharmacy5 = json_decode(search($business5['location']['postal_code'], 'pharmacy', $radius_filter, 1), true);
+	$pharmacy5 = $response_pharmacy5['businesses'][0];
 }
 
 /**
@@ -241,6 +205,6 @@ function query_api() {
 //$location = $options['location'] ?: '';
 
 //query_api($term, $location);
-query_api();
+query_api($location, $category_filter, $radius_filter, $limit);
 
 ?>
