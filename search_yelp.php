@@ -321,8 +321,8 @@ $culoare = '#0F0';
 		  }
 		  else 
 		  {
-			  echo "You can call them at: ".$hospital1['phone']."\n"; 
-			  echo 'The rating is: '.$hospital1['rating']; ?>
+			  echo "You can call them at: ".$hospital1['phone']."</br>"; 
+			  echo 'The rating is: '.$hospital1['rating'];
           }
 		  ?>
           </p>
@@ -338,8 +338,8 @@ $culoare = '#0F0';
 		  }
 		  else 
 		  {
-			  echo "You can call them at: ".$police1['phone']."\n"; 
-			  echo 'The rating is: '.$police1['rating']; ?>
+			  echo "You can call them at: ".$police1['phone']."</br>"; 
+			  echo 'The rating is: '.$police1['rating'];
           }
 		  ?>
           </p>
@@ -373,8 +373,8 @@ $culoare = '#0F0';
 		  }
 		  else 
 		  {
-			  echo "You can call them at: ".$hospital2['phone']."\n"; 
-			  echo 'The rating is: '.$hospital2['rating']; ?>
+			  echo "You can call them at: ".$hospital2['phone']."</br>"; 
+			  echo 'The rating is: '.$hospital2['rating'];
           }
 		  ?>
           </p>
@@ -390,8 +390,8 @@ $culoare = '#0F0';
 		  }
 		  else 
 		  {
-			  echo "You can call them at: ".$police2['phone']."\n"; 
-			  echo 'The rating is: '.$police2['rating']; ?>
+			  echo "You can call them at: ".$police2['phone']."</br>"; 
+			  echo 'The rating is: '.$police2['rating'];
           }
 		  ?>
           </p>
@@ -425,8 +425,8 @@ $culoare = '#0F0';
 		  }
 		  else 
 		  {
-			  echo "You can call them at: ".$hospital3['phone']."\n"; 
-			  echo 'The rating is: '.$hospital3['rating']; ?>
+			  echo "You can call them at: ".$hospital3['phone']."</br>"; 
+			  echo 'The rating is: '.$hospital3['rating'];
           }
 		  ?>
           </p>
@@ -442,8 +442,8 @@ $culoare = '#0F0';
 		  }
 		  else 
 		  {
-			  echo "You can call them at: ".$police3['phone']."\n"; 
-			  echo 'The rating is: '.$police3['rating']; ?>
+			  echo "You can call them at: ".$police3['phone']."</br>"; 
+			  echo 'The rating is: '.$police3['rating'];
           }
 		  ?>
           </p>
@@ -477,8 +477,8 @@ $culoare = '#0F0';
 		  }
 		  else 
 		  {
-			  echo "You can call them at: ".$hospital4['phone']."\n"; 
-			  echo 'The rating is: '.$hospital4['rating']; ?>
+			  echo "You can call them at: ".$hospital4['phone']."</br>"; 
+			  echo 'The rating is: '.$hospital4['rating'];
           }
 		  ?>
           </p>
@@ -494,8 +494,8 @@ $culoare = '#0F0';
 		  }
 		  else 
 		  {
-			  echo "You can call them at: ".$police4['phone']."\n"; 
-			  echo 'The rating is: '.$police4['rating']; ?>
+			  echo "You can call them at: ".$police4['phone']."</br>"; 
+			  echo 'The rating is: '.$police4['rating'];
           }
 		  ?>
           </p>
@@ -529,8 +529,8 @@ $culoare = '#0F0';
 		  }
 		  else 
 		  {
-			  echo "You can call them at: ".$hospital5['phone']."\n"; 
-			  echo 'The rating is: '.$hospital5['rating']; ?>
+			  echo "You can call them at: ".$hospital5['phone']."</br>"; 
+			  echo 'The rating is: '.$hospital5['rating'];
           }
 		  ?>
           </p>
@@ -546,8 +546,8 @@ $culoare = '#0F0';
 		  }
 		  else 
 		  {
-			  echo "You can call them at: ".$police5['phone']."\n"; 
-			  echo 'The rating is: '.$police5['rating']; ?>
+			  echo "You can call them at: ".$police5['phone']."</br>"; 
+			  echo 'The rating is: '.$police5['rating'];
           }
 		  ?>
           </p>
