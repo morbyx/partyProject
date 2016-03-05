@@ -246,9 +246,9 @@ function query_api($location, $category_filter, $radius_filter, $limit) {
 	 	$culoare4 = '#96C447';
 	
 	$business5 = $response['businesses'][4];
-	$response_hospital5 = json_decode(search($business5['location']['postal_code'], 'hospitals', 1000, 1), true);
+	$response_hospital5 = json_decode(search($business5['location']['postal_code'], 'hospitals', 8000, 1), true);
 	$hospital5 = $response_hospital5['businesses'][0];
-	$response_police5 = json_decode(search($business5['location']['postal_code'], 'policedepartments', 1000, 1), true);
+	$response_police5 = json_decode(search($business5['location']['postal_code'], 'policedepartments', 8000, 1), true);
 	$police5 = $response_police5['businesses'][0];
 	if (($hospital5['name'] == "") && ($police5['name'] != ""))
 	{
