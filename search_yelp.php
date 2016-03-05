@@ -38,7 +38,6 @@ $SEARCH_PATH = '/v2/search/';
 $BUSINESS_PATH = '/v2/business/';
 
 //Actual search values
-//$TERM = $_POST['term_input'];
 $LOCATION_DEFAULT = $_POST['location_input'];
 $location = $_POST['location_input'];
 $CATEGORY = $_POST['type_of_location'];
@@ -46,7 +45,6 @@ $category_filter = $_POST['type_of_location'];
 $DEFAULT_RADIUS_FILTER = 8000;
 $radius_filter = 8000;
 $limit = 5;
-
 
 /** 
  * Makes a request to the Yelp API and returns the response
@@ -146,6 +144,9 @@ function get_business($business_id) {
 //function query_api($term, $location) { 
 function query_api($location, $category_filter, $radius_filter, $limit) {     
     //$response = json_decode(search($term, $location));
+	global $business1, $business2, $business3, $business4, $business5;
+	global $hospital1, $hospital2, $hospital3, $hospital4, $hospital5;
+	global $police1, $police2, $police3, $police4, $police5;
 	$response = json_decode(search($location, $category_filter, $radius_filter, $limit), true);
 	
 	$business1 = $response['businesses'][0];
@@ -210,7 +211,6 @@ query_api($location, $category_filter, $radius_filter, $limit);
 </head>
 <body>
 <div>
-<p>First rating is: <?php print $police5['rating']; ?></p>
 </div>
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
