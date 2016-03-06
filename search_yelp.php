@@ -296,6 +296,11 @@ $culoare = '#0F0';
 ​<div align="center" style="margin-bottom:20px">
   <img src="Logo2.png" alt="Logo.png" class="img-rounded" height="300" width="300">
 </div>
+<div align="center" style="margin-bottom:20px">
+<a href="search_location.php">
+  <img src="back.png" alt="back.png" class="img-rounded" height="76" width="183">
+</a>
+</div>
 ​
 <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
   <div class="panel panel-default">
@@ -304,7 +309,10 @@ $culoare = '#0F0';
         <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
           <h2><?php echo $business1['name']; ?></h2>
           <p><?php echo $business1['location']['display_address'][0]; echo "\n"; echo $business1['location']['display_address'][1]; ?></p>
-          <p>You can call them at: <?php echo $business1['phone']; ?></p>
+          <p><?php
+		  if ($business1['phone'] != "") 
+		  echo "You can call them at: ".$business1['phone']; 
+		  ?></p>
           <p>The rating is: <?php echo $business1['rating']; ?></p>
         </a>
       </h4>
@@ -356,7 +364,10 @@ $culoare = '#0F0';
         <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
           <h2><?php echo $business2['name']; ?></h2>
           <p><?php echo $business2['location']['display_address'][0]; echo "\n"; echo $business2['location']['display_address'][1];?></p>
-          <p>You can call them at: <?php echo $business2['phone']; ?></p>
+          <p><?php
+		  if ($business2['phone'] != "") 
+		  echo "You can call them at: ".$business1['phone']; 
+		  ?></p>
           <p>The rating is: <?php echo $business2['rating']; ?></p>
         </a>
       </h4>
@@ -408,7 +419,10 @@ $culoare = '#0F0';
         <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
           <h2><?php echo $business3['name']; ?></h2>
           <p><?php echo $business3['location']['display_address'][0]; echo "\n"; echo $business3['location']['display_address'][1];?></p>
-          <p>You can call them at: <?php echo $business3['phone']; ?></p>
+          <p><?php
+		  if ($business3['phone'] != "") 
+		  echo "You can call them at: ".$business1['phone']; 
+		  ?></p>
           <p>The rating is: <?php echo $business3['rating']; ?></p>
         </a>
       </h4>
@@ -460,7 +474,10 @@ $culoare = '#0F0';
         <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
           <h2><?php echo $business4['name']; ?></h2>
           <p><?php echo $business4['location']['display_address'][0]; echo "\n"; echo $business4['location']['display_address'][1];?></p>
-          <p>You can call them at: <?php echo $business4['phone']; ?></p>
+          <p><?php
+		  if ($business4['phone'] != "") 
+		  echo "You can call them at: ".$business1['phone']; 
+		  ?></p>
           <p>The rating is: <?php echo $business4['rating']; ?></p>
         </a>
       </h4>
@@ -512,7 +529,10 @@ $culoare = '#0F0';
         <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
           <h2><?php echo $business5['name']; ?></h2>
           <p><?php echo $business5['location']['display_address'][0]; echo "\n"; echo $business5['location']['display_address'][1];?></p>
-          <p>You can call them at: <?php echo $business5['phone']; ?></p>
+          <p><?php
+		  if ($business5['phone'] != "") 
+		  echo "You can call them at: ".$business1['phone']; 
+		  ?></p>
           <p>The rating is: <?php echo $business5['rating']; ?></p>
         </a>
       </h4>
