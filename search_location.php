@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <title>Party Checker</title>
+    <title>Safe Party</title>
 
     <!-- Bootstrap -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -19,7 +19,9 @@
     <![endif]-->
   </head>
   <body>
-
+  <div align="center" style="margin-bottom:20px">
+  <img src="Logo2.png" alt="Logo.png" class="img-rounded" height="300" width="300">
+  </div>
 
 
     <div align="center">
